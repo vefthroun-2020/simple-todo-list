@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple To-do List</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <header>
+  <header class="page-header">
     <div>
       <img src="/images/logo.png" />
     </div>
@@ -28,8 +29,8 @@
           <p>Want a color scheme that perfectly matches your favorite images?</p>
 
           <footer>
-            <button>Remove</button>
-            <button>Done</button>
+            <button class="remove">Remove</button>
+            <button class="done">Done</button>
           </footer>
         </li>
 
@@ -37,8 +38,8 @@
           <p>With Canva’s color palette generator, you can create color combinations in seconds. </p>
 
           <footer>
-            <button>Remove</button>
-            <button>Done</button>
+            <button class="remove">Remove</button>
+            <button class="done">Done</button>
           </footer>
         </li>
 
@@ -46,7 +47,7 @@
           <p>With Canva’s color palette generator, you can create color combinations in seconds. </p>
 
           <footer>
-            <button>Remove</button>
+            <button class="remove">Remove</button>
           </footer>
         </li>
       </ul>
@@ -58,5 +59,7 @@
       <button>Add</button>
     </div>
   </main>
+
+  <script src="/script.js"></script>
 </body>
 </html>
