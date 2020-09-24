@@ -1,14 +1,17 @@
+var listEl = document.querySelector(".list ul");
+var form = document.querySelector(".add-task-container form");
+
 // Array - list
 var list = ["Do laundry", "Finish guides", "Present Project I"];
 
 // Display all items in the list
-function displayItems() {
+function displayItemsInConsole() {
   console.log("Displaying items...");
 
   // Display all list items
-  list.forEach(function (item) {
-    console.log(item);
-  });
+  for (item of list) {
+    console.log("- " + item);
+  }
 }
 
 // Add new list item
@@ -16,7 +19,7 @@ function addListItem(newListItem) {
   list.push(newListItem);
 
   // Display updated list
-  displayItems();
+  displayListItemsInDOM();
 }
 
 // Remove list item
@@ -35,7 +38,63 @@ function removeListItem(listItem) {
   }
 
   // Display the updated list
-  displayItems();
+  displayListItemsInDOM();
 }
 
 // Mark list item as done
+function addListItemToDOM(item) {
+  // Create a remove button
+  var removeButton = document.createElement("button");
+  removeButton.innerHTML = "Remove";
+  removeButton.classList.add("remove");
+
+  removeButton.addEventListener("click", function (e) {
+    var btn = e.target;
+
+    var parentListItem = btn.parentNode.parentNode;
+    var itemName = parentListItem.querySelector("p").innerText;
+
+    removeListItem(itemName);
+  });
+
+  // Create list item
+  var listItem = document.createElement("li");
+  listItem.innerHTML = `<li>
+    <p>${item}</p>
+
+    <footer>
+    </footer>
+  </li>`;
+
+  // Add remove button to list item's footer
+  var listItemFooter = listItem.querySelector("footer");
+  listItemFooter.appendChild(removeButton);
+
+  // Add list item to list DOM
+  listEl.appendChild(listItem);
+}
+
+// Update list in DOM
+function displayListItemsInDOM() {
+  // Clear list
+  listEl.innerHTML = "";
+
+  // Add all list items to listEl
+  for (item of list) {
+    // Concatenation
+    addListItemToDOM(item);
+  }
+}
+
+// Add event listener to form
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  var form = e.target;
+  var newItem = form.elements.newItem;
+
+  addListItem(newItem.value);
+
+  newItem.value = "";
+});
+
+displayListItemsInDOM();
