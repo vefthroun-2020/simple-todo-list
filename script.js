@@ -2,7 +2,18 @@ var listEl = document.querySelector(".list ul");
 var form = document.querySelector(".add-task-container form");
 
 // Array - list
-var list = ["Do laundry", "Finish guides", "Present Project I"];
+// var list = ["Do laundry", "Finish guides", "Present Project I"];
+
+var list = [
+  {
+    name: "Do laundry",
+    isDone: false,
+  },
+  {
+    name: "Finish guides",
+    isDone: true,
+  },
+];
 
 // Display all items in the list
 function displayItemsInConsole() {
@@ -59,12 +70,17 @@ function addListItemToDOM(item) {
 
   // Create list item
   var listItem = document.createElement("li");
-  listItem.innerHTML = `<li>
-    <p>${item}</p>
+
+  if (item.isDone) {
+    listItem.classList.add("done");
+  }
+
+  listItem.innerHTML = `
+    <p>${item.name}</p>
 
     <footer>
     </footer>
-  </li>`;
+  `;
 
   // Add remove button to list item's footer
   var listItemFooter = listItem.querySelector("footer");
